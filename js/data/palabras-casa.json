@@ -1,0 +1,36 @@
+﻿let palabras_casa =	[
+            {
+                key: 'cama',
+                silabas:['ca', 'ma']
+            }, {
+                key: 'casa',
+                silabas:['ca', 'sa']
+            }, {
+                key: 'mamá',
+                silabas:['ma','má']
+            }, {
+                key: 'papá',
+                silabas:['pa','pá']
+            }, {
+                key: 'perro',
+                silabas:['pe','rro']
+            }, {
+                key: 'gato',
+                silabas:['ga','to']
+            } ,{
+                key: 'mesa',
+                silabas:['me','sa']
+            }, {
+                key: 'silla',
+                silabas:['si','lla']
+            }, {
+                key: 'techo',
+                silabas:['te','cho']
+            }, {
+                key: 'piso',
+                silabas:['pi','so']
+            } , {
+                key: 'cojín',
+                silabas:['co','jin']
+            }
+        ]
