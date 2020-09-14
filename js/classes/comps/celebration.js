@@ -47,7 +47,7 @@ class Celebration extends Phaser.GameObjects.Container{
         this.gif = this.scene.add.sprite(this.config.width*0.5, this.config.height*0.45, "celeb");
         this.gif.setOrigin(0.5,0.5);  
         //Align.scaleToObjW(this.gif, 0.8, this);
-        this.gif.displayWidth= this.config.width ; //game.config.width*0.3;
+        this.gif.displayWidth= this.config.width*1.4 ; //game.config.width*0.3;
         this.gif.scaleY = this.gif.scaleX;
         this.add(this.gif);
         

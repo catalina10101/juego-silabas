@@ -20,10 +20,11 @@ class Silaba extends Phaser.GameObjects.Container{
         this.back.on('pointerdown', this.onDown);
         this.back.setOrigin(0.5,0.5);        
         this.add(this.back);
-        Align.scaleToGameW(this.back, 0.15);
+        let scale = game.config.width < 450 ? 0.2 : 0.15;
+        Align.scaleToGameW(this.back, scale);
 
-        this.silabaTxt = this.scene.add.text(0,0, config.silaba, {color:'black', fontSize: G.SILABA_SIZE});
-        this.silabaTxt.setOrigin(0.5,0.5);
+        this.silabaTxt = this.scene.add.text(0,0, config.silaba, {color:'black', fontSize: G.SILABA_SIZE, fontFamily: G.FONT_FAMILY});
+        this.silabaTxt.setOrigin(0.5,0.55);
         this.add(this.silabaTxt);
 
         this.setSize(this.back.displayWidth, this.back.displayHeight);

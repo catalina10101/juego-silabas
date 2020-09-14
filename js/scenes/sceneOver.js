@@ -17,7 +17,8 @@ class SceneOver extends Phaser.Scene {
         this.alignGrid.placeAtIndex(38, title);
         Align.scaleToGameW(title, 0.8);
 
-        let btnStart = new FlatButton({scene: this, key: 'button1', text:'jugar', event:'start_game',textConfig: {color:'white', fontSize:40}, scale:0.3 });
+        let btnStart = new FlatButton({scene: this, key: 'button1', text:'jugar', event:'start_game'
+        ,textConfig: {color:'white', fontSize:40, fontFamily: G.FONT_FAMILY}, scale:0.3 });
         this.alignGrid.placeAtIndex(93, btnStart);
 
         emitter.on('start_game', this.startGame, this );

@@ -29,14 +29,15 @@ class SceneMain extends Phaser.Scene {
         //this.load.audio("cat", ["audio/" +this.tema + "/" + meow +".mp3"]); 
         
         //OTHERS
-        this.load.image('silabaBack', pluginPath+`images/ui/buttons/2/4.png`);
+        
     }
     create() {
         //define objects        
         //this.CreateScoreBox();
         console.log("Ready!");
         emitter = new Phaser.Events.EventEmitter();
-        this.celebration = new Celebration({scene:this});
+        let minorLenght = game.config.width < game.config.height ? game.config.width : game.config.height;
+        this.celebration = new Celebration({scene:this, width: minorLenght*0.9, height: minorLenght*0.9});
         //controller = new Controller();
         this.pointedSilab = null;
         this.spaceWidth = game.config.width*0.15; //model.isMobile? 70: 150;
@@ -49,7 +50,11 @@ class SceneMain extends Phaser.Scene {
         // let gridConfig = {rows:16, cols:8, scene: this};
         // this.alignGrid = new AlignGrid(gridConfig);     
         
+        //game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+        //game.height = window.outerHeight;
         
+        // if(model.isMobile >= 0)
+        //     this.scale.startFullscreen();
         let mediaManager = new MediaManager({scene: this});
         //mediaManager.setBackgroundMusic('backgroundMusic');
         //let sb = new SoundButtons({scene: this});          
@@ -77,7 +82,8 @@ class SceneMain extends Phaser.Scene {
         this.currSpaces = [];
         //silabas 
         this.currSilabas = [];
-        this.silabasLeftMargin = game.config.width*0.1;
+        let marginPer = game.config.width < 450 ? 0.05 : 0.1;
+        this.silabasLeftMargin = game.config.width*marginPer;
         
         //console.log("this.silabaSpace", this.silabaSpace);
         
@@ -85,7 +91,7 @@ class SceneMain extends Phaser.Scene {
         this.PutSilabas(wordObj.silabas);
     }
 
-    PutSilabaSpaces = (silabas) => {
+    PutSilabaSpaces = (silabas) => {        
         this.spaceLeftMargin = game.config.width*0.3;
         this.spaceSpace = (game.config.width - (2*this.spaceLeftMargin))/ silabas.length;        
         silabas.forEach( (s, idx) => {
@@ -168,8 +174,7 @@ class SceneMain extends Phaser.Scene {
                 this.pointedSilab.destroy();
                 let isWordComplete = this.currSpaces.reduce( (prev, curr, idx)=> {return prev && curr.match}, true);
                 if(isWordComplete){
-                    this.celebration.PlayAnimation("¡MUY BIEN!", this.OnCelebrationFinished);
-                    this.celebration.depth = 200; //this.GetNextDepth();
+                    this.time.addEvent({ delay: 1500, callback: this.OnWordCompleted, callbackScope: this, loop: false });                    
                 }
             }
             else {
@@ -179,6 +184,11 @@ class SceneMain extends Phaser.Scene {
         }
 
         this.pointedSilab = null;
+    }
+
+    OnWordCompleted = () => {
+        this.celebration.PlayAnimation("¡MUY BIEN!", this.OnCelebrationFinished);
+        this.celebration.depth = 200; //this.GetNextDepth();
     }
 
     GetPointedSilaba(x, y){

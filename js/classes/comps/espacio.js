@@ -18,7 +18,7 @@ class Espacio extends Phaser.GameObjects.Container{
         this.match = false;
         this.AddGraphics();
 
-        this.text = this.scene.add.text(0, -20, "", {color:'black', fontSize: G.SILABA_SIZE});
+        this.text = this.scene.add.text(0, -G.SILABA_SIZE/3, "", {color:'black', fontSize: G.SILABA_SIZE, fontFamily: G.FONT_FAMILY});
         this.text.setOrigin(0.5,0.5);
         this.add(this.text);
 

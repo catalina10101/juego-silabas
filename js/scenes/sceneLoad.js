@@ -16,7 +16,7 @@ class SceneLoad extends Phaser.Scene {
         this.load.audio('success', [pluginPath+"audio/success.mp3"]);
         // this.load.audio('cat', ["audio/meow.mp3","audio/meow.ogg"]);
         // this.load.audio('backgroundMusic', ["audio/background.mp3","audio/background.ogg"]);
-
+        this.load.image('silabaBack', pluginPath+`images/ui/buttons/2/4.png`);
         this.load.spritesheet('celeb', pluginPath+'images/animations/celebrationFrames.png', { frameWidth: 700, frameHeight: 209, margin:0, spacing:0 });//margin: between rows 165
     }
     create(){

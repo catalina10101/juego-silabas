@@ -13,9 +13,22 @@ class Palabra extends Phaser.GameObjects.Container{
         this.config = config;
 
         this.AddBackImage();
-             
-        this.palabra = this.scene.add.text(0,this.back.displayHeight*0.5 + 5 , config.palabra, {color:'purple', fontSize:G.SILABA_SIZE});
-        this.palabra.setOrigin(0.5,0);
+        let palabraXpos, palabraYpos, origX;
+        if(game.config.height < 350){//put to the right
+            palabraXpos = this.back.displayWidth*0.5 + 15;
+            palabraYpos = 0;
+            origX = 0;
+        }
+        else {//put below
+            palabraXpos = 0;
+            palabraYpos = this.back.displayHeight*0.5 + G.SILABA_SIZE/2;
+            origX = 0.5;
+        }
+        this.palabra = this.scene.add.text(palabraXpos, palabraYpos, config.palabra, 
+            {color:'purple', fontSize:G.SILABA_SIZE, fontFamily: G.FONT_FAMILY});
+        
+        //this.palabra = this.scene.add.text(0, this.back.displayHeight*0.5 + G.SILABA_SIZE/2, config.palabra, {color:'purple', fontSize:G.SILABA_SIZE});
+        this.palabra.setOrigin(origX,0.5);
         this.add(this.palabra);
         
         this.scene.add.existing(this);        

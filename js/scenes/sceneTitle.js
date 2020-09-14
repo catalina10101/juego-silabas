@@ -12,6 +12,8 @@ class SceneTitle extends Phaser.Scene {
         //controller= new Controller();
 
         console.log("SceneTitle!");
+        if(model.isMobile >= 0)
+            this.scale.startFullscreen();
         this.alignGrid = new AlignGrid({rows:11, cols:11, scene: this});
         //this.alignGrid.showNumbers();
 
@@ -19,7 +21,9 @@ class SceneTitle extends Phaser.Scene {
         this.alignGrid.placeAtIndex(38, title);
         Align.scaleToGameW(title, 0.8);
 
-        let btnStart = new FlatButton({scene: this, key: 'button1', text:'jugar', event:'start_game',textConfig: {color:'white', fontSize:60}, scale:0.3 });
+        let btnStart = new FlatButton({scene: this, key: 'button1', text:'jugar', event:'start_game',
+        textConfig: {color:'white', fontSize:60, fontFamily: G.FONT_FAMILY}
+        ,scale: game.config.width < 650? 0.5: 0.3 });
         this.alignGrid.placeAtIndex(93, btnStart);
 
         emitter.on('start_game', this.startGame, this );
